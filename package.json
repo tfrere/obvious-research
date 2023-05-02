@@ -21,11 +21,10 @@
     "sass": "^1.62.1",
     "simplex-noise": "4.0.1",
     "three": "0.148.0",
-    "threejs-meshline": "2.0.12"
-  },
-  "devDependencies": {
+    "threejs-meshline": "2.0.12",
     "r3f-perf": "^7.1.2"
   },
+  "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
