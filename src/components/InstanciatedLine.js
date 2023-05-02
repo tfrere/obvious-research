@@ -1,0 +1,92 @@
+import * as THREE from 'three'
+import React, { useEffect } from 'react'
+import { useRef, useMemo, useLayoutEffect } from 'react'
+import niceColors from 'nice-color-palettes'
+
+import { useFrame } from '@react-three/fiber'
+
+import { useSprings } from '@react-spring/three'
+
+import mapRange from '../utils/mapRange'
+
+import useInterval from '../utils/useInterval'
+
+import { Canvas, extend } from '@react-three/fiber'
+
+const tempObject = new THREE.Object3D()
+const tempColor = new THREE.Color()
+
+export default function InstanciatedLine({
+  seed,
+  colorPalette,
+  noise3D,
+  noise2D,
+  index,
+  materials,
+  curveIntensity = 0,
+  isCurved = false,
+  isRotated = false,
+  offset = 0,
+  speed = 0.3,
+  length = 30,
+  size = [0.9, 0.9, 0.9],
+  maxSize = 2,
+  shape = 0,
+  position = [0, 0, 0]
+}) {
+  const meshRef = useRef()
+
+  // une ligne de couleurs continues
+  // avec un wireframe et un bloom de temps en temps
+
+  const colors = new Float32Array(
+    Array.from({ length }, (item, index) => {
+      return new THREE.Color().set(colorPalette[Math.floor(index % colorPalette.length)]).toArray()
+    }).flat()
+  )
+
+  useFrame((state) => {
+    const time = state.clock.getElapsedTime()
+    for (let x = 0; x < length; x++) {
+      // WTF :)
+      const noise2DValue = noise3D(-x / 16 + time / 4, index / 4, time / 2)
+      let value = mapRange(noise2DValue, 0.2, 1, 0, 1)
+      let newX = (x + offset + time * speed) % length
+
+      let newZ = isCurved ? noise3D(x / 16, (x % length) / 16, 0) * curveIntensity : 0
+      tempObject.position.set(newX + offset * 3, newZ, 0)
+      if (value <= 0.05) {
+        value = 0
+      }
+      tempObject.scale.set(value, value, value)
+      tempObject.rotation.set(0, isRotated ? Math.PI / 4 : 0, 0)
+      tempObject.updateMatrix()
+      meshRef.current.setMatrixAt(x, tempObject.matrix)
+      if (materials[x] === 1) {
+        meshRef.current.material.wireframe = true
+        meshRef.current.material.needsUpdate = true
+      } else {
+        meshRef.current.material.wireframe = false
+        meshRef.current.material.needsUpdate = true
+      }
+    }
+    meshRef.current.instanceMatrix.needsUpdate = true
+  })
+
+  return (
+    <group position={position}>
+      <instancedMesh ref={meshRef} args={[null, null, length]}>
+        {shape === 1 ? (
+          <boxGeometry args={size} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
+            <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
+          </boxGeometry>
+        ) : (
+          <cylinderGeometry args={[size[0] / 2, size[1] / 2, size[2], 8]}>
+            <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
+          </cylinderGeometry>
+        )}
+        <meshLambertMaterial vertexColors toneMapped={false} />
+      </instancedMesh>
+    </group>
+  )
+}
