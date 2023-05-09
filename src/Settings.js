@@ -6,6 +6,11 @@ import { createNoise3D, createNoise2D } from 'simplex-noise'
 
 import chroma from 'chroma-js'
 
+// Background color, relativement saturé
+
+// chroma.scale(['#fafa6e','#2A4858'])
+//     .mode('lch').colors(6)
+
 function shuffle(array) {
   let currentIndex = array.length,
     randomIndex
@@ -33,9 +38,16 @@ class Settings {
     const size = 1
     const rows = 100
     const lineSize = 100
-    const colors = niceColors[randomSnap(0, 100, 1)]
-    const noise3D = createNoise3D()
-    const noise2D = createNoise2D()
+
+    const colors = [...niceColors[randomSnap(0, 100, 1)]]
+    // console.log(colors)
+
+    const noise3D = createNoise3D(() => {
+      return random(0, 1)
+    })
+    const noise2D = createNoise2D(() => {
+      return random(0, 1)
+    })
 
     this.seed = seed
     if (this.debug) {

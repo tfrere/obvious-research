@@ -11,10 +11,7 @@ import mapRange from '../utils/mapRange'
 
 import useInterval from '../utils/useInterval'
 
-import { Canvas, extend } from '@react-three/fiber'
-
-const tempObject = new THREE.Object3D()
-const tempColor = new THREE.Color()
+import { Canvas, extend, useThree } from '@react-three/fiber'
 
 export default function InstanciatedLine({
   seed,
@@ -35,9 +32,21 @@ export default function InstanciatedLine({
   position = [0, 0, 0]
 }) {
   const meshRef = useRef()
+  const tempObject = new THREE.Object3D()
+  const tempColor = new THREE.Color()
 
   // une ligne de couleurs continues
   // avec un wireframe et un bloom de temps en temps
+
+  //   const colors = useMemo(
+  //     () =>
+  //       new Float32Array(
+  //         Array.from({ length }, (item, index) => {
+  //           return new THREE.Color().set(colorPalette[Math.floor(index % colorPalette.length)]).toArray()
+  //         }).flat()
+  //       ),
+  //     [length]
+  //   )
 
   const colors = new Float32Array(
     Array.from({ length }, (item, index) => {
@@ -47,18 +56,27 @@ export default function InstanciatedLine({
 
   useFrame((state) => {
     const time = state.clock.getElapsedTime()
+
     for (let x = 0; x < length; x++) {
       // WTF :)
-      const noise2DValue = noise3D(-x / 16 + time / 4, index / 4, time / 2)
+      let initialScaleFactor = mapRange(time * 10, 0, 10, 0, 1)
+      if (initialScaleFactor > 1) {
+        initialScaleFactor = 1
+      }
+      // WTF :)
+      const noise2DValue = noise3D(-x / 32 + time / 4, index / 4, time / 2)
       let value = mapRange(noise2DValue, 0.2, 1, 0, 1)
       let newX = (x + offset + time * speed) % length
+      let newZ = isCurved ? noise3D(x / 32, (x % length) / 16, 0) * curveIntensity : 0
 
-      let newZ = isCurved ? noise3D(x / 16, (x % length) / 16, 0) * curveIntensity : 0
       tempObject.position.set(newX + offset * 3, newZ, 0)
       if (value <= 0.05) {
         value = 0
       }
-      tempObject.scale.set(value, value, value)
+      tempObject.scale.set(value * initialScaleFactor, value * initialScaleFactor, value * initialScaleFactor)
+      //   tempObject.scale.set(initialScaleFactor, initialScaleFactor, initialScaleFactor)
+      //   tempObject.scale.set(value, value, value)
+
       tempObject.rotation.set(0, isRotated ? Math.PI / 4 : 0, 0)
       tempObject.updateMatrix()
       meshRef.current.setMatrixAt(x, tempObject.matrix)
@@ -81,7 +99,7 @@ export default function InstanciatedLine({
             <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
           </boxGeometry>
         ) : (
-          <cylinderGeometry args={[size[0] / 2, size[1] / 2, size[2], 8]}>
+          <cylinderGeometry args={[size[0] / 2, size[1] / 2, size[2], 16]}>
             <instancedBufferAttribute attach="attributes-color" args={[colors, 3]} />
           </cylinderGeometry>
         )}

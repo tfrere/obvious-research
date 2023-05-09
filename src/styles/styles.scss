@@ -21,6 +21,20 @@ $lightbackground: #5d737e;
 $pink: #3246ff;
 $blue: #e74e4e;
 
+.color-scheme {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  display: flex;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 5px;
+}
+
 html,
 body,
 #root,

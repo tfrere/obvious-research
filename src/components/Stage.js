@@ -2,7 +2,20 @@ import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } fro
 import * as THREE from 'three'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
 import { randomSnap } from '@georgedoescode/generative-utils'
-import { Loader, Stats, Float, Edges, Environment, OrbitControls, PerspectiveCamera, useTexture, Reflector } from '@react-three/drei'
+import {
+  Loader,
+  Stats,
+  Float,
+  Edges,
+  Environment,
+  OrbitControls,
+  PerspectiveCamera,
+  useTexture,
+  Reflector,
+  Box,
+  Sphere,
+  MeshDistortMaterial
+} from '@react-three/drei'
 import { DepthOfField, Glitch, EffectComposer, Bloom, Noise, SSAO } from '@react-three/postprocessing'
 import { BlendFunction, Effect, EffectAttribute, RenderPass } from 'postprocessing'
 import { Perf } from 'r3f-perf'
@@ -17,6 +30,13 @@ import { Line } from '../shader/Line'
 
 export const Stage = ({ settings }) => {
   const orbitControlRef = useRef()
+  const threeRef = useThree()
+
+  useEffect(() => {
+    threeRef.clock.start()
+    threeRef.camera.position.set(settings.camera.position[0], settings.camera.position[1], settings.camera.position[2])
+    threeRef.camera.lookAt([0, 0, 0])
+  }, [settings])
 
   const lines = settings.lines.map((line) => {
     return (
@@ -44,25 +64,20 @@ export const Stage = ({ settings }) => {
     )
   })
 
-  useEffect(() => {
-    console.log(settings.camera.position, orbitControlRef.current)
-    orbitControlRef.current.object.position.set(settings.camera.position[0], settings.camera.position[1], settings.camera.position[2])
-    orbitControlRef.current.ta
-    // orbitControlRef.current.object.lookAt([0, 0, 0])
-    //   camera.position.set(...)
-    orbitControlRef.current.update()
-  }, [settings])
-
   return (
     <>
       <color attach="background" args={[settings.backgroundColor]} />
       <OrbitControls ref={orbitControlRef} {...settings.orbitControlConfig} />
       <ambientLight intensity={1} />
       <spotLight intensity={0.5} position={[0, 50, 0]} />
+      <Environment preset="city" />
+      {/* <Sphere args={[1, 100, 100]} position={[0, 5, 0]} scale={[10, 10, 10]}>
+        <MeshDistortMaterial wireframe color={settings.colors[0]} speed={1} distort={1} radius={1} />
+      </Sphere> */}
       {lines}
       <Ground settings={settings} />
 
-      {!settings.debug && <fog attach="fog" args={[settings.fogColor, 20, 125]} />}
+      {!settings.debug && <fog attach="fog" args={[settings.fogColor, , 125]} />}
       {settings.debug && <Perf />}
 
       <EffectComposer>

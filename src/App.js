@@ -12,21 +12,14 @@ import InstanciatedLine from './components/InstanciatedLine'
 import Settings from './Settings'
 import { Scene } from './components/Scene'
 
-import { Symmetry } from './shader/Symmetry'
-import { Frame } from './shader/Frame'
-import { Line } from './shader/Line'
-
 export const App = () => {
-  const [settings, setSettings] = useState(new Settings(386))
+  const [settings, setSettings] = useState(new Settings(916))
 
   const updateSettings = () => {
-    const newSeed = 386
+    const newSeed = Math.floor(Math.random() * 1000)
     const newSettings = new Settings(newSeed)
     setSettings(newSettings)
   }
-  useState(() => {
-    updateSettings()
-  }, [settings])
 
   return (
     <div className={`screen scanlines`}>
@@ -44,6 +37,7 @@ export const App = () => {
         }}>
         Randomize
       </button>
+      <div className="color-scheme"></div>
     </div>
   )
 }
