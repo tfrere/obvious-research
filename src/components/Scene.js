@@ -1,12 +1,28 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
 import { Canvas, Camera } from '@react-three/fiber'
-import { Stage } from './Stage'
+import { PerformanceMonitor } from '@react-three/drei'
+import { Waves } from './Waves'
 
 export const Scene = ({ settings }) => {
+  const [dpr, setDpr] = useState(2)
+
   return (
-    <Canvas shadows dpr={[1, 1]} camera={settings.camera} resize={{ scroll: true, debounce: { scroll: 50, resize: 50 } }}>
+    <Canvas
+      performance={{ min: 0.5 }}
+      gl={{ physicallyCorrectColors: true }}
+      dpr={[1.5, 1.5]}
+      camera={settings.camera}
+      resize={{ scroll: true, debounce: { scroll: 50, resize: 50 } }}>
+      <PerformanceMonitor
+        flipflops={3}
+        onFallback={() => {
+          console.log(dpr)
+          setDpr(1)
+        }}
+      />
       <Suspense fallback={null}>
-        <Stage settings={settings} />
+        {console.log('scene rendered')}
+        <Waves settings={settings} />
       </Suspense>
     </Canvas>
   )

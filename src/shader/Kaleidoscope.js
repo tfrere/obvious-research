@@ -23,7 +23,7 @@ const KaleidoscopeShader = {
     uniform sampler2D u_texture;
 
     void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor) {
-      float angle = 2.0 * 3.14159265 / float(u_symmetryPoints);
+      float angle =( 2.0 * 3.14159265 / float(u_symmetryPoints) );
       vec2 center = vec2(0.5, 0.5);
       vec2 p = uv - center;
       float a = angle * floor((atan(p.y, p.x) + 3.14159265) / angle);
@@ -35,11 +35,11 @@ const KaleidoscopeShader = {
 }
 
 export class KaleidoscopeEffect extends Effect {
-  constructor() {
+  constructor({ u_symmetryPoints }) {
     super('KaleidoscopeEffect', KaleidoscopeShader.fragmentShader, {
       blendFunction: BlendFunction.MULTIPLY,
       vertexShader: KaleidoscopeShader.vertexShader,
-      uniforms: new Map([['u_symmetryPoints', new Uniform(6)]])
+      uniforms: new Map([['u_symmetryPoints', new Uniform(u_symmetryPoints)]])
     })
   }
 }

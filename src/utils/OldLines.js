@@ -8,18 +8,19 @@ import { useFrame } from '@react-three/fiber'
 import { useSprings } from '@react-spring/three'
 
 import mapRange from '../utils/mapRange'
-
+import shuffleArray from '../utils/shuffleArray'
 import useInterval from '../utils/useInterval'
 
 import { Canvas, extend, useThree } from '@react-three/fiber'
 
-export default function InstanciatedLine({
+function InstanciatedLine({
   seed,
   colorPalette,
   noise3D,
   noise2D,
   index,
   materials,
+  meshColors,
   curveIntensity = 0,
   isCurved = false,
   isRotated = false,
@@ -50,7 +51,7 @@ export default function InstanciatedLine({
 
   const colors = new Float32Array(
     Array.from({ length }, (item, index) => {
-      return new THREE.Color().set(colorPalette[Math.floor(index % colorPalette.length)]).toArray()
+      return new THREE.Color().set(meshColors[index]).toArray()
     }).flat()
   )
 
@@ -80,13 +81,13 @@ export default function InstanciatedLine({
       tempObject.rotation.set(0, isRotated ? Math.PI / 4 : 0, 0)
       tempObject.updateMatrix()
       meshRef.current.setMatrixAt(x, tempObject.matrix)
-      if (materials[x] === 1) {
-        meshRef.current.material.wireframe = true
-        meshRef.current.material.needsUpdate = true
-      } else {
-        meshRef.current.material.wireframe = false
-        meshRef.current.material.needsUpdate = true
-      }
+      //   if (materials[x] === 1) {
+      //     meshRef.current.material.wireframe = true
+      //     meshRef.current.material.needsUpdate = true
+      //   } else {
+      //     meshRef.current.material.wireframe = false
+      //     meshRef.current.material.needsUpdate = true
+      //   }
     }
     meshRef.current.instanceMatrix.needsUpdate = true
   })
@@ -108,3 +109,38 @@ export default function InstanciatedLine({
     </group>
   )
 }
+
+export const Lines = ({ settings }) => {
+  return (
+    <>
+      {settings.lines.map((line) => {
+        return (
+          line.isVisible && (
+            <InstanciatedLine
+              debug={settings.debug}
+              seed={settings.seed}
+              noise3D={settings.noise3D}
+              noise2D={settings.noise2D}
+              length={settings.lineSize}
+              size={settings.size}
+              meshColors={settings.meshColors}
+              shape={settings.shape}
+              curveIntensity={settings.curveIntensity}
+              isCurved={settings.isCurved}
+              isRotated={settings.isRotated}
+              materials={line.materials}
+              key={line.index}
+              index={line.index}
+              colorPalette={line.colorPalette}
+              speed={line.speed}
+              offset={line.offset}
+              position={[-settings.lineSize / 2, -1, line.index - settings.lineSize / 2]}
+            />
+          )
+        )
+      })}
+    </>
+  )
+}
+
+export default Lines

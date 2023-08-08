@@ -16,20 +16,22 @@ const SymmetryShader = {
       
       void mainImage(const in vec4 inputColor, const in vec2 uv, out vec4 outputColor) {
         vec4 original_color = texture2D(u_sim_texture, uv);
+        vec2 p = 0.5 - (0.5 - uv) / 1.5;
 
         if(u_force == 0) {
             outputColor = inputColor;
         }
-        if(u_force == 1) {
-            if (uv.x < 0.5) {
+        else if(u_force == 1) {
+            if (uv.x > 0.5) {
+                // outputColor = texture2D(u_sim_texture, p);
                 outputColor = original_color;
             } else { 
-                vec2 sym_texCoord = vec2(1.0 - uv.x, uv.y);
+                vec2 sym_texCoord = vec2(1. - uv.x, uv.y);
                 vec4 sym_color = texture2D(u_sim_texture, sym_texCoord);
                 outputColor = sym_color;
             }
         }
-        if(u_force == 2) {
+        else if(u_force == 2) {
             if (uv.x < 0.5 && uv.y < 0.5) {
                 outputColor = original_color;
             } 
