@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
-  "homepage": "./",
+  "homepage": "https://tfrere.github.com/generative-wave",
   "dependencies": {
     "@georgedoescode/generative-utils": "https://github.com/georgedoescode/generative-utils",
     "@react-spring/three": "9.6.1",
@@ -31,7 +31,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build && mv build docs",
+    "build": "rm -Rf docs; react-scripts build && mv build docs",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
