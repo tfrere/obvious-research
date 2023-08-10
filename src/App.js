@@ -12,7 +12,7 @@ import { Scene } from './components/Scene'
 import { MousePosition } from './components/MousePosition'
 import useSound from 'use-sound'
 
-import popDownSound from './sounds/pop-down.mp3'
+import popDownSound from './public/sounds/pop-down.mp3'
 
 import { useControls } from 'leva'
 

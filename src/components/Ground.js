@@ -3,10 +3,13 @@ import * as THREE from 'three'
 import { Canvas, useFrame, extend } from '@react-three/fiber'
 import { Loader, Stats, Float, Edges, Environment, OrbitControls, useTexture, Reflector, MeshReflectorMaterial } from '@react-three/drei'
 
+import textureUrl from '../public/images/SurfaceImperfections003_1K_var1.jpg'
+import normalUrl from '../public/images/SurfaceImperfections003_1K_Normal.jpg'
+
 function Ground({ speed = 0.015, color, settings }) {
   const groundMesh = useRef()
   const groundMesh2 = useRef()
-  const [floor, normal] = useTexture(['/SurfaceImperfections003_1K_var1.jpg', '/SurfaceImperfections003_1K_Normal.jpg'])
+  const [floor, normal] = useTexture([textureUrl, normalUrl])
   // const [floor, normal] = useTexture(['/MetalPlateStudded001_COL_2K_METALNESS.png', '/MetalPlateStudded001_COL_2K_METALNESS.png'])
 
   const activeColor = useMemo(() => {
