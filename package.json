@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
+  "homepage": "./",
   "dependencies": {
     "@georgedoescode/generative-utils": "https://github.com/georgedoescode/generative-utils",
     "@react-spring/three": "9.6.1",
