@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/generative-wave/static/css/main.f9659d43.css",
-    "main.js": "/generative-wave/static/js/main.be86254d.js",
+    "main.css": "/generative-wave/static/css/main.f5100b0e.css",
+    "main.js": "/generative-wave/static/js/main.bd20cdbd.js",
     "static/js/845.c403d012.chunk.js": "/generative-wave/static/js/845.c403d012.chunk.js",
     "static/media/SurfaceImperfections003_1K_Normal.jpg": "/generative-wave/static/media/SurfaceImperfections003_1K_Normal.fac2728f37602f44a7f9.jpg",
     "static/media/SurfaceImperfections003_1K_var1.jpg": "/generative-wave/static/media/SurfaceImperfections003_1K_var1.2af01a146cbccd80d531.jpg",
     "static/media/pop-down.mp3": "/generative-wave/static/media/pop-down.cc0a5518c9c63592453b.mp3",
     "index.html": "/generative-wave/index.html",
-    "main.f9659d43.css.map": "/generative-wave/static/css/main.f9659d43.css.map",
-    "main.be86254d.js.map": "/generative-wave/static/js/main.be86254d.js.map",
+    "main.f5100b0e.css.map": "/generative-wave/static/css/main.f5100b0e.css.map",
+    "main.bd20cdbd.js.map": "/generative-wave/static/js/main.bd20cdbd.js.map",
     "845.c403d012.chunk.js.map": "/generative-wave/static/js/845.c403d012.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9659d43.css",
-    "static/js/main.be86254d.js"
+    "static/css/main.f5100b0e.css",
+    "static/js/main.bd20cdbd.js"
   ]
 }

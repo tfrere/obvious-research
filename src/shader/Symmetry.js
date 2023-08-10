@@ -32,20 +32,20 @@ const SymmetryShader = {
             }
         }
         else if(u_force == 2) {
-            if (uv.x < 0.5 && uv.y < 0.5) {
+            if (uv.x <= 0.5 && uv.y <= 0.5) {
                 outputColor = original_color;
             } 
-            else if (uv.x > 0.5 && uv.y < 0.5) {
+            else if (uv.x >= 0.5 && uv.y <= 0.5) {
                 vec2 sym_texCoord = vec2(1.0 - uv.x, uv.y);
                 vec4 sym_color = texture2D(u_sim_texture, sym_texCoord);
                 outputColor = sym_color;
             } 
-            else if (uv.x < 0.5 && uv.y > 0.5) {
+            else if (uv.x <= 0.5 && uv.y >= 0.5) {
                 vec2 sym_texCoord = vec2(uv.x, 1.0 - uv.y);
                 vec4 sym_color = texture2D(u_sim_texture, sym_texCoord);
                 outputColor = sym_color;
             } 
-            else if (uv.x > 0.5 && uv.y > 0.5) {
+            else if (uv.x >= 0.5 && uv.y >= 0.5) {
                 vec2 sym_texCoord = vec2(1.0 - uv.x, 1.0 - uv.y);
                 vec4 sym_color = texture2D(u_sim_texture, sym_texCoord);
                 outputColor = sym_color;

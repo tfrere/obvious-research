@@ -23,8 +23,8 @@ const createSeed = () => {
 }
 
 export const App = () => {
-  const [playbackRate, setPlaybackRate] = useState(0.75)
-  const [play] = useSound(popDownSound, { playbackRate, volume: 0.1 })
+  // const [playbackRate, setPlaybackRate] = useState(0.75)
+  // const [play] = useSound(popDownSound, { playbackRate, volume: 0.1 })
 
   // const [debug, setDebug] = useState(false)
   const debug = false
@@ -39,16 +39,14 @@ export const App = () => {
 
   const updateSettings = (seed = -1) => {
     if (!isUpdated) {
-      const newSettings = new Settings(seed != -1 ? seed : createSeed(), debug, debugPerf)
-      setSettings(newSettings)
-
-      // boucle de timeout qui decrease jusqu'a s'arreter
       setIsUpdated(true)
-      setSettings(new Settings(seed != -1 ? seed : createSeed(), debug, debugPerf))
-
-      setPlaybackRate(0.75)
-      play()
-      setIsUpdated(false)
+      window.setTimeout(() => {
+        const newSettings = new Settings(seed != -1 ? seed : createSeed(), debug, debugPerf)
+        setSettings(newSettings)
+      }, 250)
+      window.setTimeout(() => {
+        setIsUpdated(false)
+      }, 500)
     }
   }
 
@@ -58,6 +56,8 @@ export const App = () => {
   useEffect(() => {
     // setDebug(!debug)
     updateSettings(defaultSeed)
+    // const newSettings = new Settings(defaultSeed, debug, debugPerf)
+    // setSettings(newSettings)
   }, [])
 
   const formatSeed = (seed) => {
@@ -74,6 +74,7 @@ export const App = () => {
       <div className="title-block ">
         <h1 className="">WORKING ON</h1>
         <h2 className=""> REPETITION</h2>
+        <h3 className="">inspired by Samsy</h3>
       </div>
       <div className="info-block  ">
         <div id="color-scheme-container">
@@ -83,9 +84,10 @@ export const App = () => {
         </div>
       </div>
       <div className="button-block ">
-        <h2 className="">
-          S-{formatSeed(settings.seed)} | C-{settings.colorSchemeIndex}
-        </h2>
+        <h3 className="">
+          SEED {formatSeed(settings.seed)}
+          {/* | C-{settings.colorSchemeIndex} */}
+        </h3>
         <button
           className={`button ${isUpdated ? ' shaky' : ''}`}
           onClick={() => {

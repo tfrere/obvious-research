@@ -10,7 +10,7 @@ export const Scene = ({ settings }) => {
     <Canvas
       performance={{ min: 0.5 }}
       gl={{ physicallyCorrectColors: true }}
-      dpr={[1.5, 1.5]}
+      dpr={[1, 1]}
       camera={settings.camera}
       resize={{ scroll: true, debounce: { scroll: 50, resize: 50 } }}>
       <PerformanceMonitor
