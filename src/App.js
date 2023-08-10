@@ -31,7 +31,7 @@ export const App = () => {
   // const [debugPerf, setDebugPerf] = useState(false)
   const debugPerf = false
 
-  const defaultSeed = 567
+  const defaultSeed = 478
 
   // 516 522
   const [settings, setSettings] = useState(new Settings(!debug ? defaultSeed : createSeed(), debug, debugPerf))

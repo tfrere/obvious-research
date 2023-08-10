@@ -1,4 +1,4 @@
-# r3f-massa-sandbox
+# generative-wave
 
 Created with CodeSandbox
 
