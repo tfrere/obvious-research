@@ -85,7 +85,7 @@ class Settings {
       this.orbitControlConfig = {}
     } else {
       this.camera = {
-        position: [randomSnap(0, 50, 1), randomSnap(30, 50, 1), randomSnap(0, 50, 1)],
+        position: [randomSnap(0, 50, 1), randomSnap(30, 50, 1), randomSnap(30, 50, 1)],
         fov: 50
       }
       this.orbitControlConfig = {
