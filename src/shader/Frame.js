@@ -27,16 +27,16 @@ const FrameShader = {
 
           outputColor = inputColor;
 
-          if(uv.y < 0.05) {
+          if(uv.y < 0.06) {
               outputColor = sym_color;
           }  
-          if(uv.x < 0.034) {
+          if(uv.x < 0.025) {
             outputColor = sym_color;
           }  
-          if(uv.y > 0.95) {
+          if(uv.y > 0.94) {
               outputColor = sym_color;
           }
-          if(uv.x > 0.966) {
+          if(uv.x > 0.975) {
             outputColor = sym_color;
         }            
         }
