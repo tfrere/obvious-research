@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/obvious-research/static/css/main.3033b926.css",
+    "main.js": "/obvious-research/static/js/main.fff447e6.js",
+    "static/media/SurfaceImperfections003_1K_Normal.jpg": "/obvious-research/static/media/SurfaceImperfections003_1K_Normal.fac2728f37602f44a7f9.jpg",
+    "static/media/SurfaceImperfections003_1K_var1.jpg": "/obvious-research/static/media/SurfaceImperfections003_1K_var1.2af01a146cbccd80d531.jpg",
+    "static/media/obvious-research-logo.svg": "/obvious-research/static/media/obvious-research-logo.8175014cf49a31536638a586a3190a80.svg",
+    "index.html": "/obvious-research/index.html",
+    "main.3033b926.css.map": "/obvious-research/static/css/main.3033b926.css.map",
+    "main.fff447e6.js.map": "/obvious-research/static/js/main.fff447e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3033b926.css",
+    "static/js/main.fff447e6.js"
+  ]
+}
