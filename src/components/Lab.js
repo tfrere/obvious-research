@@ -32,27 +32,31 @@ export const Lab = ({ settings }) => {
     camera.lookAt([0, 0, 0])
     console.log(camera.position)
   }, [settings])
-  const orbitControlProps = {
-    enablePan: false,
-    minPolarAngle: 0,
-    maxPolarAngle: Math.PI / 4,
-    minDistance: 25,
-    maxDistance: 75
-  }
+  const orbitControlProps = true
+    ? {
+        enablePan: false,
+        enableZoom: false,
+        enableRotate: false,
+        enableDamping: false,
+        minPolarAngle: 0,
+        maxPolarAngle: Math.PI / 4,
+        minDistance: 25,
+        maxDistance: 75,
+        autoRotate: true,
+        autoRotateSpeed: 0.5
+      }
+    : {
+        enablePan: true,
+        enableZoom: true,
+        enableRotate: true,
+        enableDamping: true
+      }
 
   return (
     <>
       <color attach="background" args={[settings.backgroundColor]} />
       <spotLight position={[0, 50, 0]} intensity={0.25} />
-      <OrbitControls
-        autoRotate={true}
-        autoRotateSpeed={0.5}
-        enablePan={false}
-        enableZoom={false}
-        enableDamping={false}
-        {...orbitControlProps}
-        enableRotate={false}
-      />
+      <OrbitControls {...orbitControlProps} />
       <LabSimplex settings={settings} position={[0, 10, 0]} />
       <mesh receiveShadow position={[0, -8, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
         <planeGeometry args={[401, 401]} />
@@ -64,7 +68,7 @@ export const Lab = ({ settings }) => {
         {/* <Symmetry u_force={1} /> */}
         <SSAO
           blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
-          samples={1}
+          samples={100}
           radius={150}
           intensity={50}
           // rings={250}

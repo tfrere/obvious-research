@@ -75,6 +75,8 @@ $size: 24px;
   &.-sticky .cursor-circle {
     transform: scale(1.1);
   }
+  &.-visible .cursor-circle {
+  }
   &.-visible {
     display: block;
   }

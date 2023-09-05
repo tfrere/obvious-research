@@ -44,7 +44,7 @@ const LabSimplex = ({ settings, position }) => {
       const isInCircle2 = checkIsInCircle(coord.x, coord.y, sizeOfGrid / 2, sizeOfGrid / 2, 5)
 
       tempObject.position.set(coord.x, length * 10, coord.y)
-      if (isInCircle) tempObject.scale.set(initialScale * 10 * mapRange(length, 0, 1, 1, 0.5), initialScale, mapRange(length, -1, 1, initialScale, 1) * 2)
+      if (isInCircle) tempObject.scale.set(initialScale * 10 * mapRange(length, 0, 1, 1, 0.5), 2, mapRange(length, -1, 1, initialScale, 1) * 2)
       tempObject.rotation.set(0, angle, 0)
       meshRef.current.setMatrixAt(i, tempObject.matrix)
       tempObject.updateMatrix()
@@ -60,8 +60,8 @@ const LabSimplex = ({ settings, position }) => {
             <instancedBufferAttribute attach="attributes-color" args={[settings.cubesColors, 3]} />
           </boxGeometry>
           {/* settings.colors[settings.colors.length - 1] */}
-          {/* <meshLambertMaterial vertexColors toneMapped={true} color={'red'} /> */}
-          <meshLambertMaterial toneMapped={true} color={'#0F314B'} />
+          <meshLambertMaterial toneMapped={true} color={'#310480'} />
+          {/* <meshLambertMaterial wireframe toneMapped={true} color={'#='} /> */}
         </instancedMesh>
       </group>
     </group>
