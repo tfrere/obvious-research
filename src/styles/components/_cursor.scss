@@ -1,3 +1,9 @@
+:root {
+  --text-color: #000;
+  --background-color: black;
+  --cursor-color: white;
+}
+
 .reverse {
   mix-blend-mode: difference;
 }
@@ -16,7 +22,7 @@ $size: 24px;
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999999;
+  z-index: 9999;
   display: none;
 
   contain: layout style size;
@@ -34,10 +40,11 @@ $size: 24px;
     display: block;
     width: $size * 2;
     height: $size * 2;
-    transform: scale(0);
+    transform: scale(0.8);
     z-index: -1;
 
-    background: var(--text-color);
+    border: 1px solid var(--cursor-color);
+    background: transparent;
 
     border-radius: 50%;
     overflow: hidden;
@@ -51,7 +58,6 @@ $size: 24px;
       display: block;
       width: 100%;
       height: 120%;
-      background: var(--cursor-gray-color);
       transform: translateY(100%);
       transition: all 500ms ease;
     }
@@ -63,8 +69,14 @@ $size: 24px;
   }
 
   &.-active .cursor-circle {
-    transform: scale(5.2);
+    transform: scale(0.75);
     transition-duration: 0.2s;
+  }
+  &.-sticky .cursor-circle {
+    transform: scale(1.1);
+  }
+  &.-visible {
+    display: block;
   }
 }
 
@@ -72,13 +84,3 @@ $size: 24px;
   user-select: none;
   -webkit-user-drag: none;
 }
-
-// a[target="_blank"] {
-//   @apply vr-mr-1 relative;
-// }
-
-// a[target="_blank"]::after {
-//   @apply absolute top-0 inline-block -top-5;
-//   content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25' height='27' viewBox='0 0 25 27'%3E%3Cpolygon fill='%23FFD526' points='14.822 21.123 22.47 13.475 14.839 5.828 14.822 12.056 2.48 12.056 2.48 14.877 14.822 14.877' transform='rotate(-45 12.475 13.475)'/%3E%3C/svg%3E");
-//   margin: 0 3px 0 5px;
-// }

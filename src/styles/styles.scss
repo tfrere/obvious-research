@@ -48,9 +48,9 @@ body {
   color: white;
   clip-path: polygon(
     $border-size $border-size,
-    calc(100% - $corner-size) $border-size,
-    calc(100% - $border-size) $corner-size,
-    calc(100% - $border-size) calc(100% - $border-size),
+    calc(100% - $border-size) $border-size,
+    calc(100% - $border-size) calc(100% - $corner-size),
+    calc(100% - $corner-size) calc(100% - $border-size),
     $border-size calc(100% - $border-size)
   );
 
@@ -88,6 +88,24 @@ body {
   z-index: 99999;
 }
 
+.menu {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  z-index: 9999999999;
+  display: flex;
+}
+
+.menu__link {
+  margin: 0;
+  padding: 15px;
+  margin-left: 10px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+}
+
 h1,
 h2,
 h3,
@@ -112,7 +130,7 @@ h2 {
 h4 {
   margin: 0;
   margin-top: 1.2rem;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 0.05rem;
   text-transform: lowercase;
   font-family: sans-serif;

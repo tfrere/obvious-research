@@ -44,12 +44,8 @@ export default class Cursor {
     this.isMobile = false
     this.el = $('<div class="cursor"></div>')
     this.elCircle = $('<div class="cursor-circle"></div>')
-    this.text = $(
-      '<div class="cursor-text"><div class="cursor-text__title">Visit website.</div><div class="cursor-text__instruction">click and hold<br/> to open</div></div>'
-    )
-    this.video = $(
-      '<div class="cursor-media"><video class="cursor-media__video"  src="/images/obvious.mp4" preload="auto" autoplay="" muted="" loop="" id="obvious" style="display: none;"></video><video  class="cursor-media__video" src="/images/personal.mp4" preload="auto" autoplay="" muted="" loop="" id="personal" style="display: none;"></video><video class="cursor-media__video"  src="/images/ui.mp4" preload="auto" autoplay="" muted="" loop="" id="ui" style="display: none;"></video></div>'
-    )
+    this.text = $('')
+    this.video = $('')
     this.oldTarget = null
     this.pos = { x: 0, y: 0 }
     this.oldPos = { x: 0, y: 0 }
@@ -59,8 +55,6 @@ export default class Cursor {
   }
 
   init() {
-    this.el.append(this.text)
-    this.el.append(this.video)
     this.el.append(this.elCircle)
     this.body.append(this.el)
     this.bind()
@@ -92,24 +86,6 @@ export default class Cursor {
       .on('mouseup', () => {
         self.removeState('-active')
       })
-      .on('mouseenter', '[data-cursor-text]', function () {
-        self.hasToScale = true
-        self.setText(this.dataset.cursorText)
-      })
-      .on('mouseleave', '[data-cursor-text]', function () {
-        self.hasToScale = false
-        self.removeText()
-      })
-      .on('mousedown', '[data-cursor-link]', (event) => {
-        $(this.elCircle).addClass('-holding')
-        // self.setText("hold to open");
-        this.linkTimeout = window.setTimeout(() => {
-          window.open($(event.target).attr('href'), '_blank')
-          this.linkTimeout = window.setTimeout(() => {
-            $(this.elCircle).removeClass('-holding')
-          }, 100)
-        }, 1000)
-      })
       .on('mouseup', '[data-cursor-link]', (event) => {
         $(this.elCircle).removeClass('-holding')
         clearTimeout(this.linkTimeout)
@@ -119,10 +95,10 @@ export default class Cursor {
         clearTimeout(this.linkTimeout)
       })
       .on('click', '[data-cursor-link]', (event) => {
-        if (!this.isMobile) {
-          event.stopPropagation()
-          event.preventDefault()
-        }
+        // if (!this.isMobile) {
+        //   event.stopPropagation()
+        //   event.preventDefault()
+        // }
       })
       .on('mouseenter', 'iframe', () => {
         self.hide()
@@ -130,29 +106,17 @@ export default class Cursor {
       .on('mouseleave', 'iframe', () => {
         self.show()
       })
-      .on('mouseenter', '[data-media-video]', function (event) {
-        self.hasToScale = true
-        document.getElementById(event.target.getAttribute('data-media-video')).style.display = 'block'
-        this.oldTarget = event.target
-        clearTimeout(this.mediaTimeout)
-      })
-      .on('mouseleave', '[data-media-video]', function (event) {
-        self.hasToScale = false
-        if (this.oldTarget) {
-          document.getElementById(event.target.getAttribute('data-media-video')).style.display = 'none'
-          this.oldTarget = null
-        } else {
-          this.mediaTimeout = window.setTimeout(() => {
-            document.getElementById(event.target.getAttribute('data-media-video')).style.display = 'none'
-            this.oldTarget = null
-          }, 1000)
-        }
-      })
       .on('mouseenter', '[data-cursor]', function () {
         self.setState(this.dataset.cursor)
       })
       .on('mouseleave', '[data-cursor]', function () {
         self.removeState(this.dataset.cursor)
+      })
+      .on('mouseenter', '[data-cursor-stick]', function (event) {
+        self.setStick(event.target)
+      })
+      .on('mouseleave', '[data-cursor-stick]', function () {
+        self.removeStick()
       })
   }
 
@@ -238,14 +202,16 @@ export default class Cursor {
 
   setStick(el) {
     const target = $(el)
-    const bound = target.get(0).getBoundingClientRect()
+    const bound = el.getBoundingClientRect()
+    $(this.el).addClass('-sticky')
     this.stick = {
-      y: bound.top + target.height() / 2,
-      x: bound.left + target.width() / 2
+      y: bound.top + target.outerHeight() / 2,
+      x: bound.left + target.outerWidth() / 2
     }
   }
 
   removeStick() {
+    $(this.el).removeClass('-sticky')
     this.stick = false
   }
 

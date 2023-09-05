@@ -1,16 +1,19 @@
 {
   "files": {
-    "main.css": "/obvious-research/static/css/main.3033b926.css",
-    "main.js": "/obvious-research/static/js/main.fff447e6.js",
+    "main.css": "/obvious-research/static/css/main.a2f8190e.css",
+    "main.js": "/obvious-research/static/js/main.968531fe.js",
     "static/media/SurfaceImperfections003_1K_Normal.jpg": "/obvious-research/static/media/SurfaceImperfections003_1K_Normal.fac2728f37602f44a7f9.jpg",
     "static/media/SurfaceImperfections003_1K_var1.jpg": "/obvious-research/static/media/SurfaceImperfections003_1K_var1.2af01a146cbccd80d531.jpg",
+    "static/media/hugging-face-icon.svg": "/obvious-research/static/media/hugging-face-icon.c35e007131217b9a81fd132ad8bea53c.svg",
     "static/media/obvious-research-logo.svg": "/obvious-research/static/media/obvious-research-logo.8175014cf49a31536638a586a3190a80.svg",
+    "static/media/github-icon.svg": "/obvious-research/static/media/github-icon.d1553aa8f6e1129971366c739550da3c.svg",
+    "static/media/twitter-icon.svg": "/obvious-research/static/media/twitter-icon.4931b900e5c728f8dcd9cd438b19f120.svg",
     "index.html": "/obvious-research/index.html",
-    "main.3033b926.css.map": "/obvious-research/static/css/main.3033b926.css.map",
-    "main.fff447e6.js.map": "/obvious-research/static/js/main.fff447e6.js.map"
+    "main.a2f8190e.css.map": "/obvious-research/static/css/main.a2f8190e.css.map",
+    "main.968531fe.js.map": "/obvious-research/static/js/main.968531fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.3033b926.css",
-    "static/js/main.fff447e6.js"
+    "static/css/main.a2f8190e.css",
+    "static/js/main.968531fe.js"
   ]
 }
