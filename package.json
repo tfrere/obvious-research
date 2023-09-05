@@ -1,10 +1,10 @@
 {
-  "name": "generative-wave",
+  "name": "obvious-research",
   "version": "1.0.0",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
-  "homepage": "https://tfrere.github.com/generative-wave",
+  "homepage": "https://tfrere.github.com/obvious-research",
   "dependencies": {
     "@georgedoescode/generative-utils": "https://github.com/georgedoescode/generative-utils",
     "@react-spring/three": "9.6.1",

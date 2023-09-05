@@ -63,6 +63,7 @@ export const Lab = ({ settings }) => {
       </Sphere> */}
       {/* <Ground settings={settings} position={[0, -10, 0]} speed={1} /> */}
       <fog ref={fogRef} attach="fog" args={[settings.fogColor, 0, 20]} />
+      {/* <fog attach="fog" args={['red', 30, 200]} /> */}
       {settings.debugPerf && <Perf position="bottom-right" />}
       {/* <Symmetry u_force={1} /> */}
       {/* <EffectComposer>
