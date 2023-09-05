@@ -1,4 +1,4 @@
-# generative-wave
+# Obvious-research
 
 Created with CodeSandbox
 
