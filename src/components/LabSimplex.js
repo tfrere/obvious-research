@@ -1,11 +1,10 @@
 import * as THREE from 'three'
 import React, { useEffect, useState } from 'react'
 import { useRef, useMemo, useLayoutEffect } from 'react'
-import { Canvas, extend, useThree } from '@react-three/fiber'
+import { useThree } from '@react-three/fiber'
 import { useFrame } from '@react-three/fiber'
 
 import mapRange from '../utils/mapRange'
-import { seedPRNG, createVoronoiTessellation, random, randomBias, randomSnap, createNoiseGrid, map } from '@georgedoescode/generative-utils'
 import { noise } from '../lib/simplex'
 
 function checkIsInCircle(a, b, x, y, r) {
@@ -23,7 +22,7 @@ const LabSimplex = ({ settings, position }) => {
   const ambientLightRef = useRef()
   const threeRef = useThree()
 
-  const sizeOfGrid = 100
+  const sizeOfGrid = 120
   const grid = [...Array(sizeOfGrid ** 2).keys()].map((i) => {
     return { x: i % sizeOfGrid, y: Math.floor(i / sizeOfGrid) }
   })

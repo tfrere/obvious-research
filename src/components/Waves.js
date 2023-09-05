@@ -1,35 +1,11 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
-import * as THREE from 'three'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
-import { randomSnap } from '@georgedoescode/generative-utils'
-import {
-  Loader,
-  Stats,
-  Float,
-  Edges,
-  Environment,
-  OrbitControls,
-  PerspectiveCamera,
-  useTexture,
-  Reflector,
-  Box,
-  Sphere,
-  MeshDistortMaterial,
-  shaderMaterial
-} from '@react-three/drei'
-import { DepthOfField, Glitch, EffectComposer, Bloom, Noise, SSAO, SelectiveBloom } from '@react-three/postprocessing'
-import { BlendFunction, Effect, EffectAttribute, RenderPass } from 'postprocessing'
+import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 
 import Lines from './Lines/Lines'
 
 import Ground from './Ground'
-
-import { Symmetry } from '../shader/Symmetry'
-import { Frame } from '../shader/Frame'
-import { Line } from '../shader/Line'
-
-import { Kaleidoscope } from '../shader/Kaleidoscope'
 
 const calculateDistance = (x1, y1, z1, x2, y2, z2) => {
   const dx = x2 - x1

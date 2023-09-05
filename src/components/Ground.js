@@ -1,7 +1,7 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
 import * as THREE from 'three'
-import { Canvas, useFrame, extend } from '@react-three/fiber'
-import { Loader, Stats, Float, Edges, Environment, OrbitControls, useTexture, Reflector, MeshReflectorMaterial } from '@react-three/drei'
+import { useFrame } from '@react-three/fiber'
+import { useTexture, MeshReflectorMaterial } from '@react-three/drei'
 
 import textureUrl from '../public/images/SurfaceImperfections003_1K_var1.jpg'
 import normalUrl from '../public/images/SurfaceImperfections003_1K_Normal.jpg'

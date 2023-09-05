@@ -74,24 +74,6 @@
   }
 }
 
-// .scanlines {
-//   &:before {
-//     content: '';
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     right: 0;
-//     bottom: 0;
-//     pointer-events: none;
-//     background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.2) 51%);
-//     background-size: 100% 4px;
-//     //will-change: background, background-size;
-//     //animation: scanlines .2s linear infinite;
-//     z-index: 110;
-//     opacity: 0.2;
-//   }
-// }
-
 .scan::after {
   position: absolute;
   content: '';

@@ -1,18 +1,16 @@
 {
   "files": {
-    "main.css": "/generative-wave/static/css/main.f5100b0e.css",
-    "main.js": "/generative-wave/static/js/main.e4b1aba3.js",
-    "static/js/845.c403d012.chunk.js": "/generative-wave/static/js/845.c403d012.chunk.js",
+    "main.css": "/generative-wave/static/css/main.64a94642.css",
+    "main.js": "/generative-wave/static/js/main.6343f02b.js",
     "static/media/SurfaceImperfections003_1K_Normal.jpg": "/generative-wave/static/media/SurfaceImperfections003_1K_Normal.fac2728f37602f44a7f9.jpg",
     "static/media/SurfaceImperfections003_1K_var1.jpg": "/generative-wave/static/media/SurfaceImperfections003_1K_var1.2af01a146cbccd80d531.jpg",
-    "static/media/pop-down.mp3": "/generative-wave/static/media/pop-down.cc0a5518c9c63592453b.mp3",
+    "static/media/obvious-research-logo.svg": "/generative-wave/static/media/obvious-research-logo.8175014cf49a31536638a586a3190a80.svg",
     "index.html": "/generative-wave/index.html",
-    "main.f5100b0e.css.map": "/generative-wave/static/css/main.f5100b0e.css.map",
-    "main.e4b1aba3.js.map": "/generative-wave/static/js/main.e4b1aba3.js.map",
-    "845.c403d012.chunk.js.map": "/generative-wave/static/js/845.c403d012.chunk.js.map"
+    "main.64a94642.css.map": "/generative-wave/static/css/main.64a94642.css.map",
+    "main.6343f02b.js.map": "/generative-wave/static/js/main.6343f02b.js.map"
   },
   "entrypoints": [
-    "static/css/main.f5100b0e.css",
-    "static/js/main.e4b1aba3.js"
+    "static/css/main.64a94642.css",
+    "static/js/main.6343f02b.js"
   ]
 }

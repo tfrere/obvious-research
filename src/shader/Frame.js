@@ -1,9 +1,6 @@
 import { Uniform } from 'three'
 import { BlendFunction, Effect, EffectAttribute } from 'postprocessing'
 import { wrapEffect } from './utils.tsx'
-import { EffectComposer } from '@react-three/postprocessing'
-import { useControls, useCreateStore } from 'leva'
-import { useEffect } from 'react'
 
 const FrameShader = {
   uniforms: {

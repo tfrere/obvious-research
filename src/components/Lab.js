@@ -1,41 +1,14 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
-import * as THREE from 'three'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
-import { randomSnap } from '@georgedoescode/generative-utils'
-import {
-  Loader,
-  Stats,
-  Float,
-  Edges,
-  Environment,
-  OrbitControls,
-  PerspectiveCamera,
-  useTexture,
-  Reflector,
-  Box,
-  Sphere,
-  MeshDistortMaterial,
-  shaderMaterial,
-  Cloud,
-  Effects
-} from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { SSAOPass, UnrealBloomPass } from 'three-stdlib'
-import { ChromaticAberration, DepthOfField, Glitch, EffectComposer, Bloom, Noise, SSAO, SelectiveBloom } from '@react-three/postprocessing'
-import { BlendFunction, Effect, EffectAttribute, RenderPass } from 'postprocessing'
+import { EffectComposer, SSAO } from '@react-three/postprocessing'
+import { BlendFunction } from 'postprocessing'
 import { Perf } from 'r3f-perf'
 
 extend({ SSAOPass, UnrealBloomPass })
 
-import Lines from './Lines/Lines'
-
 import LabSimplex from './LabSimplex'
-import Ground from './Ground'
-
-import { Symmetry } from '../shader/Symmetry'
-import { Frame } from '../shader/Frame'
-import { Line } from '../shader/Line'
-
-import { Kaleidoscope } from '../shader/Kaleidoscope'
 
 const calculateDistance = (x1, y1, z1, x2, y2, z2) => {
   const dx = x2 - x1
@@ -82,17 +55,17 @@ export const Lab = ({ settings }) => {
 
   return (
     <>
-      <spotLight position={[0, 50, 0]} intensity={1.75} /> {/* <color attach="background" args={[settings.backgroundColor]} /> */}
-      <OrbitControls regress rotateSpeed={0.2} autoRotate={true} ref={orbitControlRef} {...settings.orbitControlConfig} />
+      <spotLight position={[0, 50, 0]} intensity={0.25} /> {/* <color attach="background" args={[settings.backgroundColor]} /> */}
+      <OrbitControls regress rotateSpeed={0.01} autoRotate={false} ref={orbitControlRef} {...settings.orbitControlConfig} />
       <LabSimplex settings={settings} position={[0, 10, 0]} />
       {/* <Sphere args={[1, 100, 100]} position={[0, 0, 0]} scale={[3, 3, 3]}>
         <MeshDistortMaterial color={settings.colors[0]} speed={2} distort={1} radius={1} />
       </Sphere> */}
       {/* <Ground settings={settings} position={[0, -10, 0]} speed={1} /> */}
-      <fog ref={fogRef} attach="fog" args={settings.fog} />
+      <fog ref={fogRef} attach="fog" args={[settings.fogColor, 0, 20]} />
       {settings.debugPerf && <Perf position="bottom-right" />}
-      <EffectComposer>
-        {/* <Symmetry u_force={1} /> */}
+      {/* <Symmetry u_force={1} /> */}
+      {/* <EffectComposer>
         <SSAO
           blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
           samples={10}
@@ -101,8 +74,8 @@ export const Lab = ({ settings }) => {
           // rings={250}
           color="#0000FF"
         />
-        {/* <ChromaticAberration offset={3} /> */}
-      </EffectComposer>
+      </EffectComposer> */}
+      {/* <ChromaticAberration offset={3} /> */}
       {/* <Effects>
         <sSAOPass args={[scene, camera]} kernelRadius={1.5} maxDistance={1.5} />
       </Effects> */}

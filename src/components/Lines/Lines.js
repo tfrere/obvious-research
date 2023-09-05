@@ -1,38 +1,13 @@
 import * as THREE from 'three'
 import React, { useEffect, useState } from 'react'
 import { useRef, useMemo, useLayoutEffect } from 'react'
-import niceColors from 'nice-color-palettes'
-import {
-  Loader,
-  Stats,
-  Float,
-  Edges,
-  Environment,
-  OrbitControls,
-  PerspectiveCamera,
-  useTexture,
-  Reflector,
-  Box,
-  Sphere,
-  MeshDistortMaterial,
-  shaderMaterial
-} from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-
-import { useSprings } from '@react-spring/three'
-
 import mapRange from '../../utils/mapRange'
-import shuffleArray from '../../utils/shuffleArray'
-import useInterval from '../../utils/useInterval'
-
 import { Canvas, extend, useThree } from '@react-three/fiber'
-import { DepthOfField, Glitch, EffectComposer, Bloom, Noise, SSAO, SelectiveBloom } from '@react-three/postprocessing'
-import { BlendFunction, Effect, EffectAttribute, RenderPass } from 'postprocessing'
+import { EffectComposer, SelectiveBloom } from '@react-three/postprocessing'
 import { Symmetry } from '../../shader/Symmetry'
-import { Kaleidoscope } from '../../shader/Kaleidoscope'
 import { Frame } from '../../shader/Frame'
 import { Line } from '../../shader/Line'
-import { Glitches } from '../../shader/Glitches'
 
 const Lines = ({ settings, position }) => {
   const [isLoaded, setIsLoaded] = React.useState(false)

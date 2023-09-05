@@ -1,17 +1,9 @@
 import * as THREE from 'three'
-import { Suspense, useMemo, useEffect, useRef, useState } from 'react'
 import { seedPRNG, createVoronoiTessellation, random, randomBias, randomSnap, createNoiseGrid, map } from '@georgedoescode/generative-utils'
-import { randomLcg, randomNormal, randomGeometric } from 'd3-random'
-
 import { createNoise3D, createNoise2D } from 'simplex-noise'
-
-import shuffleArray from './utils/shuffleArray'
 import mapRange from './utils/mapRange'
-
 import chroma from 'chroma-js'
-
 import { getProbabilisticRandom, getProbabilisticRandomArray } from './utils/getProbabilisticRandom'
-
 import { sortColorsBySaturation, sortColorsByLuminance, createMonochromePalette, createPalette } from './utils/colors'
 
 class Settings {
@@ -120,7 +112,7 @@ class Settings {
     this.meshColors = meshColors
     this.backgroundColor = backgroundColor
     this.fogColor = fogColor
-    this.fog = [fogColor, 0, 220]
+    this.fog = [fogColor, 0, 120]
     this.gridColor = '#F0F0'
     this.isRotated = randomSnap(0, 1, 1)
     this.noise3D = noise3D

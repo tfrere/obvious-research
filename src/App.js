@@ -1,33 +1,19 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
-import * as THREE from 'three'
-import { Canvas, useFrame, extend } from '@react-three/fiber'
-import { randomSnap } from '@georgedoescode/generative-utils'
 import { Loader, Stats, Float, Edges, Environment, OrbitControls, useTexture, Reflector } from '@react-three/drei'
-import { DepthOfField, Glitch, EffectComposer, Bloom, Noise } from '@react-three/postprocessing'
-import { BlendFunction, Effect, EffectAttribute, RenderPass } from 'postprocessing'
-import { Perf } from 'r3f-perf'
 
 import Settings from './Settings'
 import { Scene } from './components/Scene'
 import { MousePosition } from './components/MousePosition'
-import useSound from 'use-sound'
 
-import popDownSound from './public/sounds/pop-down.mp3'
-
-import { useControls } from 'leva'
-
-import useKeyPress from './utils/useKeyPress'
+import { ReactComponent as Logo } from './public/obvious-research-logo.svg'
 
 const createSeed = () => {
   return Math.floor(Math.random() * 1000)
 }
 
 export const App = () => {
-  // const [playbackRate, setPlaybackRate] = useState(0.75)
-  // const [play] = useSound(popDownSound, { playbackRate, volume: 0.1 })
-
   // const [debug, setDebug] = useState(false)
-  const debug = false
+  const debug = true
   // const [debugPerf, setDebugPerf] = useState(false)
   const debugPerf = false
 
@@ -68,10 +54,17 @@ export const App = () => {
     <div className={`screen scanlines`}>
       <Scene settings={settings} />
       <Loader />
-      {/* <div className="centered-title-block ">
-        <h1 className="">Challenging the narrative, we're the artists of tomorrow's technology</h1>
-      </div> */}
-      <div className="title-block ">
+      <div className="screen ">
+        <Logo className="logo" />
+        <div className="ui-bottom">
+          <h1 className="title">
+            Challenging the narrative,
+            <br /> we're the artists of tomorrow's technology
+          </h1>
+          <h4 className="coming-soon">Coming soon...</h4>
+        </div>
+      </div>
+      {/* <div className="title-block ">
         <h1 className="">WORKING ON</h1>
         <h2 className=""> REPETITION</h2>
         <h3 className="">inspired by Samsy</h3>
@@ -86,7 +79,6 @@ export const App = () => {
       <div className="button-block ">
         <h3 className="">
           SEED {formatSeed(settings.seed)}
-          {/* | C-{settings.colorSchemeIndex} */}
         </h3>
         <button
           className={`button ${isUpdated ? ' shaky' : ''}`}
@@ -98,9 +90,13 @@ export const App = () => {
       </div>
       <div className="mouse-position-block  ">
         <MousePosition />
-      </div>
+      </div> */}
     </div>
   )
+}
+
+{
+  /* | C-{settings.colorSchemeIndex} */
 }
 
 // import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'

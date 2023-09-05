@@ -2,6 +2,7 @@ import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } fro
 import { Canvas, Camera } from '@react-three/fiber'
 import { PerformanceMonitor } from '@react-three/drei'
 import { Waves } from './Waves'
+import { Lab } from './Lab'
 
 export const Scene = ({ settings }) => {
   const [dpr, setDpr] = useState(2)
@@ -22,7 +23,8 @@ export const Scene = ({ settings }) => {
       />
       <Suspense fallback={null}>
         {console.log('scene rendered')}
-        <Waves settings={settings} />
+        {/* <Waves settings={settings} /> */}
+        <Lab settings={settings} />
       </Suspense>
     </Canvas>
   )
