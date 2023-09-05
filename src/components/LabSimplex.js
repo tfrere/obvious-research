@@ -41,7 +41,7 @@ const LabSimplex = ({ settings, position }) => {
       let length = noise.simplex3(coord.x / scaleFactor, coord.y / scaleFactor, time) * 1.5
       const isInCircle = checkIsInCircle(coord.x, coord.y, sizeOfGrid / 2, sizeOfGrid / 2, sizeOfGrid / 2)
 
-      const isInCircle2 = checkIsInCircle(coord.x, coord.y, sizeOfGrid / 2, sizeOfGrid / 2, 5)
+      const isInCircle2 = checkIsInCircle(coord.x, coord.y, sizeOfGrid / 2, sizeOfGrid / 2, 0)
 
       tempObject.position.set(coord.x, length * 10, coord.y)
       if (isInCircle) tempObject.scale.set(initialScale * 10 * mapRange(length, 0, 1, 1, 0.5), 2, mapRange(length, -1, 1, initialScale, 1) * 2)

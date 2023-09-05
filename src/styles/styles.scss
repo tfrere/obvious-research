@@ -33,6 +33,10 @@ body,
   overflow: hidden;
 }
 
+.coming-soon {
+  opacity: 0.5;
+}
+
 .screen {
   &.debug-mode {
     touch-action: none;
