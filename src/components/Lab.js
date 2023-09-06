@@ -43,7 +43,7 @@ export const Lab = ({ settings }) => {
         minDistance: 25,
         maxDistance: 75,
         autoRotate: true,
-        autoRotateSpeed: 0.5
+        autoRotateSpeed: 1.5
       }
     : {
         enablePan: true,
