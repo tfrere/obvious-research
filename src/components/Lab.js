@@ -54,15 +54,15 @@ export const Lab = ({ settings }) => {
 
   return (
     <>
-      <color attach="background" args={[settings.backgroundColor]} />
+      {/* <color attach="background" args={[settings.backgroundColor]} /> */}
       <spotLight position={[0, 50, 0]} intensity={0.25} />
       <OrbitControls {...orbitControlProps} />
       <LabSimplex settings={settings} position={[0, 10, 0]} />
       <mesh receiveShadow position={[0, -8, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
         <planeGeometry args={[401, 401]} />
-        <meshLambertMaterial color={settings.backgroundColor} />
+        <meshLambertMaterial color={'#555'} />
       </mesh>
-      <fog ref={fogRef} attach="fog" args={[settings.fogColor, 0, 80]} />
+      <fog ref={fogRef} attach="fog" args={['#555', 0, 80]} />
       {settings.debugPerf && <Perf position="bottom-right" />}
       <EffectComposer>
         {/* <Symmetry u_force={1} /> */}
@@ -72,7 +72,7 @@ export const Lab = ({ settings }) => {
           radius={150}
           intensity={50}
           // rings={250}
-          color="#4882AB"
+          color="#000"
         />
         <Frame />
       </EffectComposer>

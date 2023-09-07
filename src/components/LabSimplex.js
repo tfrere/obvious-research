@@ -60,8 +60,8 @@ const LabSimplex = ({ settings, position }) => {
             <instancedBufferAttribute attach="attributes-color" args={[settings.cubesColors, 3]} />
           </boxGeometry>
           {/* settings.colors[settings.colors.length - 1] */}
-          <meshLambertMaterial toneMapped={true} color={'#310480'} />
-          {/* <meshLambertMaterial wireframe toneMapped={true} color={'#='} /> */}
+          <meshLambertMaterial toneMapped={true} color={'#000'} />
+          {/* <meshLambertMaterial toneMapped={true} color={'#310480'} /> */}
         </instancedMesh>
       </group>
     </group>
