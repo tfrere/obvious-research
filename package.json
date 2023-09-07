@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.js",
-  "homepage": "https://tfrere.github.com/obvious-research",
+  "homepage": "https://obvious-research.com/",
   "dependencies": {
     "@georgedoescode/generative-utils": "https://github.com/georgedoescode/generative-utils",
     "@react-spring/three": "9.6.1",
