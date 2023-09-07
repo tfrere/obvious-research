@@ -28,7 +28,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "react-scripts start",
-    "build": "rm -Rf docs; GENERATE_SOURCEMAP=false; react-scripts build && mv build docs",
+    "build": "rm -Rf docs; GENERATE_SOURCEMAP=false; react-scripts build && mv build docs;touch CNAME;echo 'obvious-research.com' > CNAME; cp CNAME docs/static/; cp CNAME docs/",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
