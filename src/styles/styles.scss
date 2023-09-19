@@ -160,6 +160,7 @@ button {
   top: 100px;
   left: 100px;
   z-index: 99999;
+  width: 200px;
 }
 
 .ui-center {
@@ -201,3 +202,31 @@ button {
 //   margin: 0 auto;
 //   display: inline-block;
 // }
+
+@media (max-width: 767px) {
+  .c-cursor {
+    display: none !important;
+  }
+  .logo {
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  h1 {
+    width: 80%;
+    font-size: 60px;
+    line-height: 60px;
+  }
+  .menu {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    width: 80%;
+    font-size: 40px;
+    line-height: 40px;
+  }
+}

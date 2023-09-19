@@ -6,12 +6,14 @@ import { EffectComposer, SSAO, Noise, Glitch, ChromaticAberration } from '@react
 import { BlendFunction } from 'postprocessing'
 import { Symmetry } from '../shader/Symmetry'
 import { Line } from '../shader/Line'
+import { Square } from '../shader/Square'
 import { Frame } from '../shader/Frame'
 import { Perf } from 'r3f-perf'
 
 extend({ SSAOPass, UnrealBloomPass })
 import LabSimplex from './LabSimplex'
 import { useControls } from 'leva'
+import { Wave } from '../shader/Wave'
 
 const is_debug = false
 
@@ -86,7 +88,7 @@ export const Lab = ({ settings }) => {
 
   return (
     <>
-      <Stats id={'99999999'} />
+      {/* <Stats id={'99999999'} /> */}
       <color attach="background" args={['#555']} />
       <spotLight position={[0, 50, 0]} intensity={0.25} />
       <OrbitControls {...orbitControlProps} />
@@ -94,7 +96,6 @@ export const Lab = ({ settings }) => {
       <fog ref={fogRef} attach="fog" args={['#555', fogValue[0], fogValue[1]]} />
       {settings.debugPerf && <Perf position="bottom-right" />}
       <EffectComposer>
-        <Symmetry u_force={symmetryForce} />
         {/* <SSAO
           blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
           samples={100}
@@ -103,9 +104,12 @@ export const Lab = ({ settings }) => {
           // rings={250}
           color="#000"
         /> */}
-        <ChromaticAberration offset={5} />
+        {/* <Wave uniforms-u_mouse-value={mouse} u_time={} /> */}
+        <Square />
+        <Symmetry u_force={symmetryForce} />
+        <ChromaticAberration offset={15} />
         {/* <Glitch delay={[4.1, 8.1]} duration={[0.01, 0.02]} strength={[0.1, 0.4]} perturbationMap={null} /> */}
-        <Noise opacity={0.03} />
+        <Noise opacity={0.06} />
         {/* <Frame /> */}
         {/* <Line /> */}
       </EffectComposer>
