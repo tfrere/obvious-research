@@ -4,7 +4,7 @@ import { wrapEffect } from './utils.tsx'
 
 const rectDataArray = new Float32Array(10 * 4)
 const rectOffsetArray = new Float32Array(10 * 2)
-for (let i = 0; i < 4; i++) {
+for (let i = 0; i < 40; i++) {
   const isWide = Math.random() > 0.2
   rectDataArray[i * 4] = Math.random()
   rectDataArray[i * 4 + 1] = Math.random()

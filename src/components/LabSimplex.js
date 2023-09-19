@@ -82,11 +82,11 @@ const LabSimplex = ({ settings, position }) => {
     <group position={position} scale={[0.8, 0.8, 0.8]}>
       <group position={[-sizeOfGrid / 2, -0.5, -sizeOfGrid / 2]}>
         <instancedMesh castShadow receiveShadow ref={meshRef} args={[null, null, sizeOfGrid ** 2]}>
-          <boxGeometry castShadow receiveShadow args={[1, 1, 1]}>
+          <sphereGeometry castShadow receiveShadow args={[1, 12, 12]}>
             <instancedBufferAttribute attach="attributes-color" args={[settings.cubesColors, 3]} />
-          </boxGeometry>
+          </sphereGeometry>
           {/* settings.colors[settings.colors.length - 1] */}
-          <meshLambertMaterial toneMapped={true} color={'#000'} />
+          <meshLambertMaterial wireframe toneMapped={true} color={'#000'} />
           {/* <meshLambertMaterial toneMapped={true} color={'#310480'} /> */}
         </instancedMesh>
       </group>

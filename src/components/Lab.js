@@ -93,7 +93,7 @@ export const Lab = ({ settings }) => {
       <spotLight position={[0, 50, 0]} intensity={0.25} />
       <OrbitControls {...orbitControlProps} />
       <LabSimplex settings={settings} position={[0, 10, 0]} />
-      <fog ref={fogRef} attach="fog" args={['#555', fogValue[0], fogValue[1]]} />
+      <fog ref={fogRef} attach="fog" args={['#333333', fogValue[0], fogValue[1]]} />
       {settings.debugPerf && <Perf position="bottom-right" />}
       <EffectComposer>
         {/* <SSAO
@@ -105,8 +105,8 @@ export const Lab = ({ settings }) => {
           color="#000"
         /> */}
         {/* <Wave uniforms-u_mouse-value={mouse} u_time={} /> */}
+        {/* <Symmetry u_force={symmetryForce} /> */}
         <Square />
-        <Symmetry u_force={symmetryForce} />
         <ChromaticAberration offset={15} />
         {/* <Glitch delay={[4.1, 8.1]} duration={[0.01, 0.02]} strength={[0.1, 0.4]} perturbationMap={null} /> */}
         <Noise opacity={0.06} />
