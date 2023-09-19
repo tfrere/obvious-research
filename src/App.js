@@ -6,6 +6,12 @@ import { Scene } from './components/Scene'
 import { MousePosition } from './components/MousePosition'
 
 import { ReactComponent as Logo } from './public/obvious-research-logo.svg'
+import { Cursor } from 'react-creative-cursor'
+
+import TwitterIcon from './public/twitter-icon.svg'
+import HuggingFaceIcon from './public/hugging-face-icon.svg'
+import GithubIcon from './public/github-icon.svg'
+import InstagramIcon from './public/instagram-icon.svg'
 
 const createSeed = () => {
   return Math.floor(Math.random() * 1000)
@@ -52,16 +58,33 @@ export const App = () => {
 
   return (
     <div className={`screen scanlines`}>
+      <Cursor isGelly={true} cursorInnerColor={'white'} cursorBackgroundColor={'white'} sizeAnimationDuration={1} />
       <Scene settings={settings} />
       <Loader />
       <div className="screen ">
         <Logo className="logo" />
-        <div className="ui-bottom">
-          <h1 className="title">
-            Challenging the narrative,
-            <br /> we're the artists of tomorrow's technology
-          </h1>
-          <h4 className="coming-soon">Coming soon...</h4>
+        <div className="ui-center">
+          <div className="ui-center__container">
+            <h1 className="title">An academic laboratory dedicated to AI and art.</h1>
+            <button data-cursor-magnetic data-cursor-size="100px" href="https://obvious-art.com" target="_blank">
+              <span>Free mint Access</span>
+            </button>
+            <p>For the launch of Obvious Research, we created a free NFT, follow the link to opensea to mint.</p>
+          </div>
+        </div>
+        <div class="menu">
+          <a class="menu__link" data-cursor-size="60px" data-cursor-stick="#stick-twitter" target="_blank" href="https://twitter.com/obv_research">
+            <img id="stick-twitter" src={`${TwitterIcon}`} />
+          </a>
+          <a class="menu__link" data-cursor-size="60px" data-cursor-stick="#stick-github" target="_blank" href="https://github.com/obvious-research">
+            <img id="stick-github" src={`${GithubIcon}`} />
+          </a>
+          <a class="menu__link" data-cursor-size="60px" data-cursor-stick="#stick-huggingface" target="_blank" href="https://huggingface.co/obvious-research">
+            <img id="stick-huggingface" src={`${HuggingFaceIcon}`} />
+          </a>
+          <a class="menu__link" data-cursor-size="60px" data-cursor-stick="#stick-instagram" target="_blank" href="https://instagram.com/obvious_art">
+            <img id="stick-instagram" src={`${InstagramIcon}`} />
+          </a>
         </div>
       </div>
       {/* <div className="title-block ">

@@ -1,88 +1,73 @@
-:root {
-  --text-color: #000;
-  --background-color: black;
-  --cursor-color: white;
-}
-
-.reverse {
-  mix-blend-mode: difference;
-}
-
-$size: 24px;
-
-.cursor-hold-circle {
-  background: red;
-  width: 100%;
-  height: 100%;
-}
-
-.cursor {
-  $root: &;
-
+.c-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9999;
-  display: none;
-
-  contain: layout style size;
+  z-index: 999;
   pointer-events: none;
-  will-change: transform;
+  will-change: transform, height, width, color;
+  border-radius: 100%;
+  contain: layout style size;
+  transform: translate(-50%, -50%);
+  border: 1px solid white;
+  background: none !important;
 
-  transition: opacity 0.3s, color 0.4s;
-  // transition-timing-function:cubic-bezier(0.6, -0.28, 0.735, 0.045);
-
-  .cursor-circle {
-    content: '';
+  &__inner {
     position: absolute;
-    top: -$size;
-    left: -$size;
-    display: block;
-    width: $size * 2;
-    height: $size * 2;
-    transform: scale(0.8);
-    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: scale(0);
+    opacity: 0;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    letter-spacing: -0.01em;
+    mix-blend-mode: inherit;
+    will-change: transform, height, width, opacity, color;
+    border-radius: 100%;
+    contain: layout style size;
 
-    border: 1px solid var(--cursor-color);
-    background: transparent;
-
-    border-radius: 50%;
-    overflow: hidden;
-
-    transition: transform 0.3s ease-in-out, opacity 0.1s, background-color 0.1s;
-    &:before {
-      content: '';
-      position: absolute;
-      top: -20%;
-      left: 0%;
-      display: block;
-      width: 100%;
-      height: 120%;
-      transform: translateY(100%);
-      transition: all 500ms ease;
-    }
-    &.-holding:before {
-      transform: translateY(0%);
-      // border: 1px solid yellow;
-      transition: all 1500ms ease;
-    }
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
   }
 
-  &.-active .cursor-circle {
-    transform: scale(0.75);
-    transition-duration: 0.2s;
-  }
-  &.-sticky .cursor-circle {
-    transform: scale(1.1);
-  }
-  &.-visible .cursor-circle {
-  }
-  &.-visible {
-    display: block;
+  &__img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    filter: invert(1);
   }
 }
 
-[data-cursor-link] {
-  user-select: none;
-  -webkit-user-drag: none;
+[data-cursor-size],
+[data-cursor-background-image],
+[data-cursor-color],
+[data-cursor-exclusion],
+[data-cursor-text],
+[data-cursor-stick],
+[data-cursor-magnetic] {
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+  }
+
+  a,
+  button,
+  input,
+  textarea {
+    pointer-events: painted;
+    transform: translate(0, 0) !important;
+  }
 }

@@ -1,0 +1,17 @@
+.menu {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  z-index: 9999999999;
+  display: flex;
+}
+
+.menu__link {
+  margin: 0;
+  padding: 15px;
+  margin-left: 10px;
+  opacity: 0.8;
+  &:hover {
+    opacity: 1;
+  }
+}

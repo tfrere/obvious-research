@@ -1,16 +1,19 @@
 import React, { Suspense, useMemo, useEffect, useRef, useState, forwardRef } from 'react'
 import { Canvas, useFrame, extend, useThree } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
+import { OrbitControls, Stats } from '@react-three/drei'
 import { SSAOPass, UnrealBloomPass } from 'three-stdlib'
-import { EffectComposer, SSAO } from '@react-three/postprocessing'
+import { EffectComposer, SSAO, Noise, Glitch, ChromaticAberration } from '@react-three/postprocessing'
 import { BlendFunction } from 'postprocessing'
 import { Symmetry } from '../shader/Symmetry'
+import { Line } from '../shader/Line'
 import { Frame } from '../shader/Frame'
 import { Perf } from 'r3f-perf'
 
 extend({ SSAOPass, UnrealBloomPass })
-
 import LabSimplex from './LabSimplex'
+import { useControls } from 'leva'
+
+const is_debug = false
 
 const calculateDistance = (x1, y1, z1, x2, y2, z2) => {
   const dx = x2 - x1
@@ -25,25 +28,54 @@ export const Lab = ({ settings }) => {
   const fogRef = useRef()
   const threeRef = useThree()
   const { scene, camera, clock } = useThree()
-
+  const { rotationSpeed, symmetryForce, cameraPosition, fogValue, chromaticGap } = useControls({
+    rotationSpeed: {
+      value: 0.4,
+      min: 0,
+      max: 60,
+      step: 0.01
+    },
+    symmetryForce: {
+      value: 1,
+      min: 0,
+      max: 2,
+      step: 1
+    },
+    cameraPosition: {
+      value: [0, 0, 160]
+    },
+    fogValue: {
+      value: [0, 160]
+    },
+    chromaticGap: {
+      value: 100,
+      min: 0,
+      max: 600,
+      step: 1
+    }
+  })
   useEffect(() => {
     threeRef.clock.start()
-    camera.position.set(20, 40, 35)
+    camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2])
     camera.lookAt([0, 0, 0])
-    console.log(camera.position)
   }, [settings])
-  const orbitControlProps = true
+
+  // useFrame(() => {
+  //   camera.position.set(cameraPosition[0], cameraPosition[1], cameraPosition[2])
+  //   camera.lookAt([0, 0, 0])
+  // })
+  const orbitControlProps = !is_debug
     ? {
         enablePan: false,
         enableZoom: false,
         enableRotate: false,
         enableDamping: false,
         minPolarAngle: 0,
-        maxPolarAngle: Math.PI / 4,
+        maxPolarAngle: 0,
         minDistance: 25,
         maxDistance: 75,
         autoRotate: true,
-        autoRotateSpeed: 1.5
+        autoRotateSpeed: rotationSpeed
       }
     : {
         enablePan: true,
@@ -54,27 +86,28 @@ export const Lab = ({ settings }) => {
 
   return (
     <>
-      {/* <color attach="background" args={[settings.backgroundColor]} /> */}
+      <Stats id={'99999999'} />
+      <color attach="background" args={['#555']} />
       <spotLight position={[0, 50, 0]} intensity={0.25} />
       <OrbitControls {...orbitControlProps} />
       <LabSimplex settings={settings} position={[0, 10, 0]} />
-      <mesh receiveShadow position={[0, -8, 0]} rotation={[-Math.PI / 2, 0, Math.PI / 2]}>
-        <planeGeometry args={[401, 401]} />
-        <meshLambertMaterial color={'#555'} />
-      </mesh>
-      <fog ref={fogRef} attach="fog" args={['#555', 0, 80]} />
+      <fog ref={fogRef} attach="fog" args={['#555', fogValue[0], fogValue[1]]} />
       {settings.debugPerf && <Perf position="bottom-right" />}
       <EffectComposer>
-        {/* <Symmetry u_force={1} /> */}
-        <SSAO
+        <Symmetry u_force={symmetryForce} />
+        {/* <SSAO
           blendFunction={BlendFunction.MULTIPLY} // Use NORMAL to see the effect
           samples={100}
           radius={150}
-          intensity={50}
+          intensity={250}
           // rings={250}
           color="#000"
-        />
-        <Frame />
+        /> */}
+        <ChromaticAberration offset={5} />
+        {/* <Glitch delay={[4.1, 8.1]} duration={[0.01, 0.02]} strength={[0.1, 0.4]} perturbationMap={null} /> */}
+        <Noise opacity={0.03} />
+        {/* <Frame /> */}
+        {/* <Line /> */}
       </EffectComposer>
     </>
   )

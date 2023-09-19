@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.1f554eb1.css",
-    "main.js": "/static/js/main.e8cc534a.js",
+    "main.css": "/static/css/main.6ce3d6eb.css",
+    "main.js": "/static/js/main.532d2eb0.js",
     "static/media/SurfaceImperfections003_1K_Normal.jpg": "/static/media/SurfaceImperfections003_1K_Normal.fac2728f37602f44a7f9.jpg",
     "static/media/SurfaceImperfections003_1K_var1.jpg": "/static/media/SurfaceImperfections003_1K_var1.2af01a146cbccd80d531.jpg",
     "static/media/hugging-face-icon.svg": "/static/media/hugging-face-icon.c35e007131217b9a81fd132ad8bea53c.svg",
-    "static/media/obvious-research-logo.svg": "/static/media/obvious-research-logo.8175014cf49a31536638a586a3190a80.svg",
+    "static/media/instagram-icon.svg": "/static/media/instagram-icon.fc83219bd895acb48fbb373e7903928e.svg",
     "static/media/github-icon.svg": "/static/media/github-icon.d1553aa8f6e1129971366c739550da3c.svg",
+    "static/media/obvious-research-logo.svg": "/static/media/obvious-research-logo.91a92b2d501bf57d86cc281ce0da90f8.svg",
     "static/media/twitter-icon.svg": "/static/media/twitter-icon.4931b900e5c728f8dcd9cd438b19f120.svg",
     "index.html": "/index.html",
-    "main.1f554eb1.css.map": "/static/css/main.1f554eb1.css.map",
-    "main.e8cc534a.js.map": "/static/js/main.e8cc534a.js.map"
+    "main.6ce3d6eb.css.map": "/static/css/main.6ce3d6eb.css.map",
+    "main.532d2eb0.js.map": "/static/js/main.532d2eb0.js.map"
   },
   "entrypoints": [
-    "static/css/main.1f554eb1.css",
-    "static/js/main.e8cc534a.js"
+    "static/css/main.6ce3d6eb.css",
+    "static/js/main.532d2eb0.js"
   ]
 }
