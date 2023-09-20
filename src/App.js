@@ -66,7 +66,13 @@ export const App = () => {
         <div className="ui-center">
           <div className="ui-center__container">
             <h1 className="title">An academic laboratory dedicated to AI and Art</h1>
-            <button data-cursor-magnetic data-cursor-size="100px" href="https://obvious-art.com" target="_blank">
+            {/*  */}
+            <button
+              data-cursor-magnetic
+              data-cursor-size="100px"
+              onClick={() => {
+                window.open('https://opensea.io/collection/renaissance-obvious-research/drop', '_blank')
+              }}>
               <span>Free mint Access</span>
             </button>
             <p>For the launch of Obvious Research, we created a free NFT, follow the link to opensea to mint.</p>
