@@ -21,6 +21,8 @@ for (let i = 0; i < 40; i++) {
   rectOffsetArray[i * 2 + 1] = Math.random() * 0.5 - 0.25
 }
 
+console.log(rectOffsetArray)
+
 const SquareShader = {
   uniforms: {
     u_force: { value: 1 },
@@ -67,7 +69,8 @@ const SquareShader = {
 }
 
 export class SquareEffect extends Effect {
-  constructor(u_force = 1) {
+  constructor(u_force = 1, u_rectData = rectDataArray, u_rectOffset = rectOffsetArray) {
+    console.log('toto', u_rectData)
     super('SquareEffect', SquareShader.fragmentShader, {
       blendFunction: BlendFunction.MULTIPLY,
       vertexShader: SquareShader.vertexShader,

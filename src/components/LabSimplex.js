@@ -24,7 +24,7 @@ const LabSimplex = ({ settings, position }) => {
   const ambientLightRef = useRef()
   const threeRef = useThree()
   // const [scaleFactor, setScaleFactor] = useState(10)
-  const { scaleFactor, timeFactor, initialScale, yScale } = useControls({
+  const { scaleFactor, timeFactor, initialScale, yScale, wireframe } = useControls({
     scaleFactor: {
       value: 15,
       min: 0,
@@ -48,7 +48,8 @@ const LabSimplex = ({ settings, position }) => {
       min: 0,
       max: 50,
       step: 1
-    }
+    },
+    wireframe: false
   })
 
   const sizeOfGrid = 55
@@ -70,7 +71,12 @@ const LabSimplex = ({ settings, position }) => {
       const isInCircle2 = checkIsInCircle(coord.x, coord.y, sizeOfGrid / 2, sizeOfGrid / 2, 0)
 
       tempObject.position.set(coord.x, length * yScale, coord.y)
-      if (isInCircle) tempObject.scale.set(initialScale * yScale * mapRange(length, 0, 1, 1, 0.5), 2, 1)
+      if (isInCircle)
+        tempObject.scale.set(
+          initialScale * yScale * mapRange(length, 0, 1, 1, 0.5),
+          initialScale * yScale * mapRange(length, 0, 1, 1, 0.5),
+          initialScale * yScale * mapRange(length, 0, 1, 1, 0.5)
+        )
       // tempObject.rotation.set(0, angle, 0)
       meshRef.current.setMatrixAt(i, tempObject.matrix)
       tempObject.updateMatrix()
@@ -86,7 +92,7 @@ const LabSimplex = ({ settings, position }) => {
             <instancedBufferAttribute attach="attributes-color" args={[settings.cubesColors, 3]} />
           </sphereGeometry>
           {/* settings.colors[settings.colors.length - 1] */}
-          <meshLambertMaterial wireframe toneMapped={true} color={'#000'} />
+          <meshLambertMaterial wireframe={wireframe} toneMapped={true} color={'#000'} />
           {/* <meshLambertMaterial toneMapped={true} color={'#310480'} /> */}
         </instancedMesh>
       </group>

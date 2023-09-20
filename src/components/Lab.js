@@ -30,7 +30,7 @@ export const Lab = ({ settings }) => {
   const fogRef = useRef()
   const threeRef = useThree()
   const { scene, camera, clock } = useThree()
-  const { rotationSpeed, symmetryForce, cameraPosition, fogValue, chromaticGap } = useControls({
+  const { rotationSpeed, symmetryForce, cameraPosition, fogValue, chromaticGap, test } = useControls({
     rotationSpeed: {
       value: 0.4,
       min: 0,
@@ -54,7 +54,8 @@ export const Lab = ({ settings }) => {
       min: 0,
       max: 600,
       step: 1
-    }
+    },
+    test: true
   })
   useEffect(() => {
     threeRef.clock.start()
@@ -86,6 +87,41 @@ export const Lab = ({ settings }) => {
         enableDamping: true
       }
 
+  const [rectDataArray, setRectDataArray] = useState(new Float32Array(10 * 4))
+  const [rectOffsetArray, setRectOffsetArray] = useState(new Float32Array(10 * 2))
+
+  const updateGlitches = () => {
+    let dataArray = new Float32Array(10 * 4)
+    let offsetArray = new Float32Array(10 * 2)
+    for (let i = 0; i < 40; i++) {
+      const isWide = Math.random() > 0.2
+      dataArray[i * 4] = Math.random()
+      dataArray[i * 4 + 1] = Math.random()
+
+      if (isWide) {
+        dataArray[i * 4 + 2] = Math.random() * 0.8 + 0.1 // Wide width
+        dataArray[i * 4 + 3] = Math.random() * 0.05 + 0.02 // Very thin height
+      } else {
+        dataArray[i * 4 + 2] = Math.random() * 0.05 + 0.02 // Very thin width
+        dataArray[i * 4 + 3] = Math.random() * 0.8 + 0.1 // Tall height
+      }
+
+      offsetArray[i * 2] = Math.random() * 0.5 - 0.25
+      offsetArray[i * 2 + 1] = Math.random() * 0.5 - 0.25
+    }
+    setRectDataArray(rectDataArray)
+    setRectOffsetArray(rectOffsetArray)
+  }
+
+  // useFrame((state, clock) => {
+  //   if (state.clock.elapsedTime > 5) {
+  //     updateGlitches()
+  //     state.clock.elapsedTime = 0.0
+  //   }
+  // })
+
+  // console.log(rectOffsetArray)
+
   return (
     <>
       {/* <Stats id={'99999999'} /> */}
@@ -106,7 +142,7 @@ export const Lab = ({ settings }) => {
         /> */}
         {/* <Wave uniforms-u_mouse-value={mouse} u_time={} /> */}
         {/* <Symmetry u_force={symmetryForce} /> */}
-        <Square />
+        {test ? <Square u_rectData={rectDataArray} u_rectOffset={rectOffsetArray} /> : null}
         <ChromaticAberration offset={15} />
         {/* <Glitch delay={[4.1, 8.1]} duration={[0.01, 0.02]} strength={[0.1, 0.4]} perturbationMap={null} /> */}
         <Noise opacity={0.06} />
